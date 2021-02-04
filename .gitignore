@@ -1,0 +1,30 @@
+# folders
+target
+.idea
+**/assembly
+!assembly
+**/generated
+**/out/**
+**/target/**
+**/node_modules
+**/assets/i18n/strings
+!assets/i18n/strings/en
+**/resources/static/i18n/strings
+!resources/static/i18n/strings/en
+**/queryingservices
+**/dist
+**/node/node
+# files
+.DS_Store
+*.iml
+*.factorypath
+*.log
+*.class
+**velocity.log*
+components/common/idlcompiler/dependency-reduced-pom.xml
+**/yarn.lock
+.gitignore.swp
+.project
+.classpath
+**/.settings/**
+**/.externalToolBuilders/**
