@@ -21,4 +21,5 @@ public class StudentDemo {
     System.out.println(studentA.name);
     System.out.println(studentB.name);
   }
+
 }

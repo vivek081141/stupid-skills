@@ -1,7 +1,7 @@
 /**
  * Blueprint
  */
-public class Student {
+public final class Student {
   //instance or member variable
   String name; //null
   int age; // 0

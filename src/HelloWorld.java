@@ -29,7 +29,35 @@ public class HelloWorld {
    */
   public static void main(String[] args) {
     System.out.println(args[0]) ;//println
+
+    String s = "Hello";
   }
+
+  public String withoutX2(String str) {
+
+    if (str.length() < 2) {
+      return str;
+    }
+
+    boolean flag = false;
+    if (str.charAt(0) == 'x' || str.charAt(1)== 'x') {
+      flag = true;
+    }
+
+    if (flag) {
+      String temp = "";
+      for (int i=0; i<str.length(); i++) {
+        if (str.charAt(i) != 'x') {
+          temp = temp +  str.charAt(i);
+        }
+      }
+      str = temp;
+    }
+
+    return str;
+
+  }
+
 
 
 }
