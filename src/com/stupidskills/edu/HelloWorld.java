@@ -1,6 +1,12 @@
+package com.stupidskills.edu;
+
+
+import com.stupidskills.edu.strings.ImmutableDemo;
+import java.util.*;
+
 /**
  *
- * Class - public class HelloWorld
+ * Class - public class com.stupidskills.edu.HelloWorld
  *
  * Entrypoint of this class
  * Function: main
@@ -17,7 +23,7 @@ public class HelloWorld {
 
   /**
    * public : it can be accessed from anywhere
-   * static: HelloWorld.main *complicate
+   * static: com.stupidskills.edu.HelloWorld.main *complicate
    * This method is static
    *
    * void: this method/function is not returning anything
@@ -28,6 +34,8 @@ public class HelloWorld {
    * args = [string1, string2, string3, string4 ]
    */
   public static void main(String[] args) {
+    ImmutableDemo demo = new ImmutableDemo();
+    ArrayList list = new ArrayList();
     System.out.println(args[0]) ;//println
 
     String s = "Hello";

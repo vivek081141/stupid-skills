@@ -1,3 +1,5 @@
+package com.stupidskills.edu;
+
 public class StudentDemo {
 
 
@@ -8,7 +10,7 @@ public class StudentDemo {
    */
   public static void main(String[] args) {
 
-    //creating an object of Student
+    //creating an object of com.stupidskills.edu.Student
     Student studentA = new Student("Anil", 28);
 
    /* studentA.name = "Anil";

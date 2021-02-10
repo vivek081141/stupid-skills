@@ -1,3 +1,5 @@
+package com.stupidskills.edu.strings;
+
 public class PallindromeDemo {
 
   public static void main(String[] args) {

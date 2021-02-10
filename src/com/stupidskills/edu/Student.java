@@ -1,8 +1,10 @@
+package com.stupidskills.edu;
+
 /**
  * Blueprint
  */
-public final class Student {
-  //instance or member variable
+public class Student {
+  // member variable
   String name; //null
   int age; // 0
 
@@ -12,6 +14,7 @@ public final class Student {
     name = firstName;
     age = ageOfStudent;
   }
+
 
 
 

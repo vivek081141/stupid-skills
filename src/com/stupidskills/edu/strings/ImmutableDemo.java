@@ -1,3 +1,5 @@
+package com.stupidskills.edu.strings;
+
 public class ImmutableDemo {
 
   public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package com.stupidskills.edu;
+
 public class IntegerDemo {
 
 
@@ -5,7 +7,7 @@ public class IntegerDemo {
   Function: piece of code written to execute a functionality
   Method: A function which is defined inside a class
 
-  Student - Age
+  com.stupidskills.edu.Student - Age
   Vivek     29
   XYZ       NULL
    */

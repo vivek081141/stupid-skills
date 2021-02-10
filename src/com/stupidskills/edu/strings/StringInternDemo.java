@@ -1,3 +1,5 @@
+package com.stupidskills.edu.strings;
+
 public class StringInternDemo {
 
   public static void main(String[] args) {
