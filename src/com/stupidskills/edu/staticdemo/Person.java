@@ -6,7 +6,7 @@ public class Person {
 
   public static int age;
 
-  private static String name;
+  private String name; //instance variable
 
   /**
    *Person a = new Person();
@@ -15,14 +15,13 @@ public class Person {
    *  Person.getName();
    *
    */
-  public static String getName() {
+  public  String getName() {
     return name;
   }
 
   public void setName(String name) {
     this.name = name;
   }
-
 
   public static void printName (String name){
     System.out.println(name);
