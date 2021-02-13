@@ -7,10 +7,15 @@ package com.stupidskills.edu.oop.abstraction.example1;
  *
  *  SBI is a Bank
  */
-public class SBI extends Bank {
+public class SBI extends RBIBank {
 
   public SBI() {
     super();
+  }
+
+  @Override
+  public boolean closeAccount() {
+    return false;
   }
 
   @Override

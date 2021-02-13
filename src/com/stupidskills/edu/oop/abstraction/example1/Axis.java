@@ -8,6 +8,11 @@ public class Axis extends RBIBank{
   }
 
   @Override
+  public boolean closeAccount() {
+    return false;
+  }
+
+  @Override
   public void withdraw(long withdrawAmount) {
     balance = balance - withdrawAmount;
   }
