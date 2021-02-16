@@ -1,6 +1,6 @@
-package com.stupidskills.edu.sort;
+package com.stupidskills.edu.sort.comparable;
 
-import org.junit.jupiter.api.Assertions;
+import com.stupidskills.edu.sort.Player;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,17 +10,18 @@ import java.util.List;
 /**
  * For a list of players, we want to sort them on the the basic of runs
  * Order : Ascending Order
- *
  */
 public class PlayerTest {
 
   @Test
   public void test1() {
-    List<Player> personList = createPersonList();
-    Collections.sort(personList);
-   for(Player p: personList) {
-     System.out.println(p.getRuns());
-   }
+    List<Player> playerList = createPersonList();
+
+    Collections.sort(playerList);
+
+    for (Player p : playerList) {
+      System.out.println("Name: " + p.getName() + " Runs: "+ p.getRuns());
+    }
   }
 
   //{1, 4, 6, 8, 5} = {1, 4, 5, 6, 8 }

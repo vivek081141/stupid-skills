@@ -3,34 +3,52 @@ package com.stupidskills.edu.sort;
 public class Player  implements Comparable<Player>{
   private String name;
   private int testMatches;
-  private int runs;
+  private Integer runs;
 
-  public Player(String name,int testMatches, int runs) {
+  public Player(String name,int testMatches, Integer runs) {
     this.name = name;
     this.testMatches = testMatches;
     this.runs = runs;
   }
 
   public String getName() {
-    return name;
+    return this.name;
   }
 
-  public float getTestMatches() {
+  public int getTestMatches() {
     return testMatches;
   }
 
-  public int getRuns() {
+  public Integer getRuns() {
     return runs;
   }
 
   @Override
   public int compareTo(Player o) {
+    if (this.runs < o.runs) {
+      return 1;
+    }
+    if (this.runs > o.runs) {
+      return -1;
+    }
     return 0;
+
+
+   // return this.runs - o.runs;
   }
 
 
+
   /**
-   * natural order is increasing
+   *
+   * player1 -> Rohit (2200) abcd@509
+   * player2 -> Virat (8700) abcd@511
+   *
+   *  player1.compareTo(player2)
+   */
+
+  /**
+   * natural order is ascending
    *
    * Returns:
    *    * a positive integer = if this object is greater than specified object
