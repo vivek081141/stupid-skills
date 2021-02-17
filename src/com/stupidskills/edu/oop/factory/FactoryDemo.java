@@ -9,8 +9,8 @@ public class FactoryDemo {
   public static void main(String[] args) {
 
     Employee emp = new Employee("Vivek");
-    Bank axis = BankFactory.createObject(Bank.AXIS);
-    Bank sbi = BankFactory.createObject(Bank.SBI);
+    Bank axis = BankFactory.createObject(BankName.AXIS);
+    Bank sbi = BankFactory.createObject(BankName.SBI);
 
     depositMoney(emp,axis, 500);
     depositMoney(emp,sbi, 500);

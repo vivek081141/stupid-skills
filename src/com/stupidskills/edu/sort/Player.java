@@ -37,6 +37,10 @@ public class Player  implements Comparable<Player>{
    // return this.runs - o.runs;
   }
 
+  @Override
+  public String toString() {
+    return "Player{" + "name='" + this.name + '\'' + ", testMatches=" + this.testMatches + ", runs=" + this.runs + '}';
+  }
 
 
   /**

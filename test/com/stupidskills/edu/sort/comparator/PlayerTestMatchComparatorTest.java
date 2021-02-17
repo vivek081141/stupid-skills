@@ -64,19 +64,19 @@ public class PlayerTestMatchComparatorTest {
 
 
   private List<Player> createPersonList() {
-    List<Player> personList = new ArrayList<>();
+    List<Player> playerList = new ArrayList<>();
     Player virat = new Player("Virat", 87, 7401);
     Player rohit = new Player("Rohit", 35, 2288);
     Player shikharDhawan = new Player("Shikhar", 35, 2088);
     Player sachin = new Player("Sachin", 200, 15921);
     Player pujara = new Player("Pujara", 82, 6199);
 
-    personList.add(virat);
-    personList.add(rohit);
-    personList.add(shikharDhawan);
-    personList.add(sachin);
-    personList.add(pujara);
+    playerList.add(virat);
+    playerList.add(rohit);
+    playerList.add(shikharDhawan);
+    playerList.add(sachin);
+    playerList.add(pujara);
 
-    return personList;
+    return playerList;
   }
 }
