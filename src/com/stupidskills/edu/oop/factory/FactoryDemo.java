@@ -1,6 +1,6 @@
 package com.stupidskills.edu.oop.factory;
 
-import com.stupidskills.edu.oop.abstraction.example1.Bank;
+import com.stupidskills.edu.oop.abstraction.abstractclass.Bank;
 import com.stupidskills.edu.oop.encapsulation.Employee;
 
 public class FactoryDemo {

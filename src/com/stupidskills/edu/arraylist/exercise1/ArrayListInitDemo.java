@@ -1,4 +1,4 @@
-package com.stupidskills.edu.arraylist.exercises;
+package com.stupidskills.edu.arraylist.exercise1;
 
 import com.stupidskills.edu.Address;
 import com.stupidskills.edu.Student;

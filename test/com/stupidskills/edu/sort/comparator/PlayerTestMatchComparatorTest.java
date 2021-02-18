@@ -1,7 +1,6 @@
 package com.stupidskills.edu.sort.comparator;
 
-import static org.junit.jupiter.api.Assertions.*;
-import com.stupidskills.edu.sort.Player;
+import com.stupidskills.edu.sort.comparable.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;

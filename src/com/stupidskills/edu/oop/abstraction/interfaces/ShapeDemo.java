@@ -1,4 +1,4 @@
-package com.stupidskills.edu.oop.abstraction.example2;
+package com.stupidskills.edu.oop.abstraction.interfaces;
 
 //ShapeDemo.main([]); -> printArea()
 // ShapeDemo object = new ShapeDemo()

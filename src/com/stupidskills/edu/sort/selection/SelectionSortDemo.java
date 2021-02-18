@@ -1,4 +1,4 @@
-package com.stupidskills.edu.sort;
+package com.stupidskills.edu.sort.selection;
 
 public class SelectionSortDemo {
 

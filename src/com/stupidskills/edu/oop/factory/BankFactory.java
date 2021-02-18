@@ -1,9 +1,9 @@
 package com.stupidskills.edu.oop.factory;
 
-import com.stupidskills.edu.oop.abstraction.example1.Axis;
-import com.stupidskills.edu.oop.abstraction.example1.Bank;
-import com.stupidskills.edu.oop.abstraction.example1.HDFC;
-import com.stupidskills.edu.oop.abstraction.example1.SBI;
+import com.stupidskills.edu.oop.abstraction.abstractclass.Axis;
+import com.stupidskills.edu.oop.abstraction.abstractclass.Bank;
+import com.stupidskills.edu.oop.abstraction.abstractclass.HDFC;
+import com.stupidskills.edu.oop.abstraction.abstractclass.SBI;
 
 public class BankFactory {
 

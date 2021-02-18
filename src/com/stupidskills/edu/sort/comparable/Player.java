@@ -1,4 +1,4 @@
-package com.stupidskills.edu.sort;
+package com.stupidskills.edu.sort.comparable;
 
 public class Player  implements Comparable<Player>{
   private String name;
@@ -8,6 +8,10 @@ public class Player  implements Comparable<Player>{
   public Player(String name,int testMatches, Integer runs) {
     this.name = name;
     this.testMatches = testMatches;
+    this.runs = runs;
+  }
+
+  public void setRuns(Integer runs) {
     this.runs = runs;
   }
 
@@ -42,6 +46,19 @@ public class Player  implements Comparable<Player>{
     return "Player{" + "name='" + this.name + '\'' + ", testMatches=" + this.testMatches + ", runs=" + this.runs + '}';
   }
 
+  @Override
+  public int hashCode() {
+    return 53;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    /*super.equals(o);*/
+    if (this == o) return true;
+
+    Player p = (Player) o;
+    return (this.runs.equals(p.runs) ) && (this.testMatches == p.testMatches) && (this.getName().equals(p.getName()));
+  }
 
   /**
    *

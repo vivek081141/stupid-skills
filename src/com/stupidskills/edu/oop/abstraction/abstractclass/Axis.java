@@ -1,4 +1,4 @@
-package com.stupidskills.edu.oop.abstraction.example1;
+package com.stupidskills.edu.oop.abstraction.abstractclass;
 
 public class Axis extends RBIBank{
 

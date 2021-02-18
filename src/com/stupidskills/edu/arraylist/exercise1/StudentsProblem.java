@@ -1,9 +1,11 @@
-package com.stupidskills.edu.arraylist.exercises;
+package com.stupidskills.edu.arraylist.exercise1;
 
 import com.stupidskills.edu.Address;
 import com.stupidskills.edu.Student;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class StudentsProblem {
 
@@ -37,16 +39,21 @@ public class StudentsProblem {
   }
 
   public List<String> findUniqueCity(List<Student> studentList) {
-    List<String> uniqueCity = new ArrayList<>();
+    //List<String> uniqueCity = new ArrayList<>();
+    Set<String> hashSet = new HashSet<>();
     for (Student student: studentList) {
       //student -> 1st student which is present in the arraylist
       for(Address address: student.getAddressList()) {
         //address -> 1st address, 2nd, 3rd
-        if (!uniqueCity.contains(address.getCity())) {
+        /*if (!uniqueCity.contains(address.getCity())) {
           uniqueCity.add(address.getCity());
-        }
+        }*/
+        hashSet.add(address.getCity());
       }
     }
+
+    //Object[]
+    List<String> uniqueCity = new ArrayList<String>(hashSet);
     return uniqueCity;
   }
 

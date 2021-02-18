@@ -1,6 +1,6 @@
 package com.stupidskills.edu.sort.comparator;
 
-import com.stupidskills.edu.sort.Player;
+import com.stupidskills.edu.sort.comparable.Player;
 import java.util.Comparator;
 
 

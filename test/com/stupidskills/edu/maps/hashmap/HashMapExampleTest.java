@@ -1,6 +1,6 @@
 package com.stupidskills.edu.maps.hashmap;
 
-import com.stupidskills.edu.sort.Player;
+import com.stupidskills.edu.sort.comparable.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
@@ -93,9 +93,53 @@ public class HashMapExampleTest {
 
   }
 
-  private Map<PlayerNames,Player> getPlayerMap() {
+  /**
+   * 1. Default size 16 -> 32 -> 64
+   * 2. Load factor = 0.75
+   * 3. Rehashing 12 -> 24 ->
+   *
+   * two theads call put(K, V)
+   * hash - 11 elements
+   */
+
+  @Test
+  public void hashCodeExample() {
+    Map< Player, String> map = new HashMap<>();
+    Player virat = new Player(VIRAT, 87, 7401); //virat@509
+
+    String hello = new String("HELLO");
+    hello = hello.intern();
+    String helloWorld = new String("HELLO");
+
+    //same instance
+    String a = "Hello";
+    String b = "Hello";
+
+    //hascode = 53
+    map.put(virat, VIRAT);
+
+
+    Player viratDup = new Player(VIRAT, 87, 7401); //virat@510
+    //hascode = 53
+   // map.put(viratDup, "VIRAT_DUP");
+
+
+    System.out.println(map.get(viratDup));
+
+
+
+  }
+
+
+
+
+
+    private Map<PlayerNames,Player> getPlayerMap() {
     Map<PlayerNames, Player> map = new HashMap<>();
-    Player virat = new Player(VIRAT, 87, 7401);
+    Player virat = new Player(VIRAT, 87, 7401); //virat@509
+
+
+
     Player rohit = new Player(ROHIT, 35, 2288);
     Player shikharDhawan = new Player("Shikhar", 35, 2088);
     Player sachin = new Player("Sachin", 200, 15921);

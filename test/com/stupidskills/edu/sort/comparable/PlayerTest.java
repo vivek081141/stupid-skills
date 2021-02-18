@@ -1,6 +1,5 @@
 package com.stupidskills.edu.sort.comparable;
 
-import com.stupidskills.edu.sort.Player;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Collections;

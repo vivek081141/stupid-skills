@@ -1,6 +1,5 @@
-package com.stupidskills.edu.oop.abstraction.example1;
+package com.stupidskills.edu.oop.abstraction.abstractclass;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**

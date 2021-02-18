@@ -1,4 +1,4 @@
-package com.stupidskills.edu.oop.abstraction.example2;
+package com.stupidskills.edu.oop.abstraction.interfaces;
 
 public class Rectangle implements Shape{
 
