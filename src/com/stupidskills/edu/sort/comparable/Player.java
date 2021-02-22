@@ -47,6 +47,13 @@ public class Player  implements Comparable<Player>{
   }
 
   @Override
+  protected void finalize() throws Throwable {
+    //this will be called by JVM whenever it will free the memory of any object associated with this blueprint
+    System.out.println("Finalize block::" + this.name);
+    super.finalize();
+  }
+
+  @Override
   public int hashCode() {
     return 53;
   }

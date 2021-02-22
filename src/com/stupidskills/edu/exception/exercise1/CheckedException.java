@@ -1,12 +1,18 @@
 package com.stupidskills.edu.exception.exercise1;
 
+import com.stupidskills.edu.Student;
+
 public class CheckedException {
 
-  public void test() {
+  public void classNotFoundException() {
     try {
       Class.forName("myPackage.exampl.Sample");
-    }catch (ClassNotFoundException ex) {
-      ex.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+      
     }
+
+
   }
+
 }
