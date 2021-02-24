@@ -4,6 +4,7 @@ import com.stupidskills.edu.Student;
 import com.stupidskills.edu.sort.comparable.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import java.io.IOException;
 
 public class UnCheckedExceptionTest {
 
@@ -48,6 +49,21 @@ public class UnCheckedExceptionTest {
     System.out.println(exception.dummyMethod());
     System.out.println(exception.dummyMethod());
 
+  }
+
+  @Test
+  public void throwTest() {
+    Integer[] arr = {11, 12, 12};
+    try {
+      exception.arrayIndexOutOfBoundThrow(arr);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Test
+  public void customExceptionTest() {
+    exception.customException(5);
   }
 
 

@@ -1,6 +1,7 @@
 package com.stupidskills.edu.exception.exercise1;
 
 import com.stupidskills.edu.sort.comparable.Player;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -88,10 +89,32 @@ public final class UnCheckedException {
   }
 
 
+  //checked Exception - Compiler will make sure that it needs to be handled
+  public int arrayIndexOutOfBoundThrow( Integer[] array) throws IOException {
+
+    try {
+      int a = array[4];
+      return a;  //this will not get executed
+    }catch (ArrayIndexOutOfBoundsException | NullPointerException ex){
+      throw new IOException("Better use array of length 5");
+    } catch (Exception ex) {
+      return -1; //return -1
+    }
+  }
+
+
   public boolean dummyMethod() {
     System.out.println("Dummy Method");
     System.gc();
     System.out.println("GC called Method");
     return true;
   }
-}
+
+
+  public void customException( int age)  {
+    if (age < 8) {
+      throw new GenericException("ERROR_CODE_98","Age should be greater than 8");
+    }
+  }
+
+  }

@@ -20,8 +20,8 @@ public class StudentDemo {
    /* studentB.name = "B";
     studentB.age = 20;*/
 
-    System.out.println(studentA.name);
-    System.out.println(studentB.name);
+    System.out.println(studentA.getName());
+    System.out.println(studentB.getName());
   }
 
 }

@@ -1,15 +1,21 @@
 package com.stupidskills.edu;
 
+import org.junit.jupiter.api.Test;
 import java.util.List;
 
 /**
  * Blueprint
  */
-public class Student {
+@Deprecated
+public class Student implements AutoCloseable {
   // member variable
-  String name; //null
-  int age; // 0
+
+  private String name; //null
+  private int age; // 0
   private List<Address> addressList;
+
+  public Student() {
+  }
 
   //firstName = Anil
   //ageOfStudent = 28
@@ -32,5 +38,14 @@ public class Student {
 
   public int getAge() {
     return age;
+  }
+
+  private void printName() {
+    System.out.println("Printing name::" + this.name);
+  }
+
+  @Override
+  public void close() throws Exception {
+    System.out.println("Closing connection");
   }
 }
