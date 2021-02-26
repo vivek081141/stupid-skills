@@ -5,53 +5,34 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 
 public class SerializableExample {
 
-  public static void main(String[] args) {
-    Car car = new Car();
-    String filename = "file.txt";
 
-    serialization(car, filename);
+  public  Car serialization(Car car, String filename) {
 
-    deseialization(filename);
-  }
-
-
-
-  private static Car serialization(Car car, String filename) {
-    try {
-
-      FileOutputStream file = new FileOutputStream(filename);
-      ObjectOutputStream out = new ObjectOutputStream(file);
+    try (final OutputStream fos = new FileOutputStream(filename);
+         final ObjectOutputStream outerStream = new ObjectOutputStream(fos);){
 
       // Method for serialization of object
-      out.writeObject(car);
+      outerStream.writeObject(car);
+      outerStream.flush();
 
-      out.close();
-      file.close();
-
-
-    } catch (IOException ex) {
-      System.out.println("IOException is caught");
+    } catch (IOException e) {
+      e.printStackTrace();
     }
 
     return car;
   }
 
-  private static Car deseialization(String filename) {
+  public  com.stupidskills.edu.serialization.Car deserialization(String filename) {
     Car car = null;
-    try {
-
-      // Reading the object from a file
-      FileInputStream file = new FileInputStream(filename);
-      ObjectInputStream in = new ObjectInputStream(file);
+    try (  FileInputStream fis = new FileInputStream(filename);
+           ObjectInputStream ois = new ObjectInputStream(fis)){
 
       // Method for deserialization of object
-      car = (Car) in.readObject();
-
-      in.close();
-      file.close();
+      car = (com.stupidskills.edu.serialization.Car) ois.readObject();
 
     } catch (IOException ex) {
       System.out.println("IOException is caught");

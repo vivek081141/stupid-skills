@@ -1,8 +1,4 @@
-package com.stupidskills.edu.exception.exercise1;
-
-import com.stupidskills.edu.Student;
-import com.stupidskills.edu.StudentDemo;
-import java.util.ArrayList;
+package com.stupidskills.edu.exception.exercises;
 
 public class MultiCatchBlock {
 
@@ -11,24 +7,6 @@ public class MultiCatchBlock {
       int a[] = new int[5];
       a[5] = 30 / 0;
 
-
-      //CRUD:MYSQL - SQLDEVELOPER
-      //1. OPEN CONNECTION
-      //hostid:3600@username::12345
-      /**
-       * 2. PS
-       * 3. INSERT - DONE
-       * + UPDATE - SQLException
-       */
-      //con.commit(true)
-      // Fruits
-
-      // smaller - grapes
-      // larger - oranges
-      //largest - apples
-
-      //subclass/derived class - should be on the TOP
-      //Parent/Super - should be on the lower
     } catch (ArithmeticException e) {
       System.out.println("Arithmetic Exception occurs");
     } catch (ArrayIndexOutOfBoundsException e) {
@@ -58,12 +36,4 @@ public class MultiCatchBlock {
     System.out.println("rest of the code");
   }
 
-
-  //TODO
-  public void tryWIthResource (Student student) throws Exception {
-      try (student){
-          student.setAddressList(new ArrayList<>());
-      }
-
-  }
 }

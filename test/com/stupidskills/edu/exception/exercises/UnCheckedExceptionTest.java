@@ -1,4 +1,4 @@
-package com.stupidskills.edu.exception.exercise1;
+package com.stupidskills.edu.exception.exercises;
 
 import com.stupidskills.edu.Student;
 import com.stupidskills.edu.sort.comparable.Player;

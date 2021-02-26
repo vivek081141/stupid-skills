@@ -1,10 +1,7 @@
-package com.stupidskills.edu.exception.exercise1;
+package com.stupidskills.edu.exception.exercises;
 
 import com.stupidskills.edu.sort.comparable.Player;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Runtime Exception

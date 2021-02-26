@@ -1,13 +1,21 @@
 package com.stupidskills.edu.serialization;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CarFeatures {
+public class CarFeatures implements Serializable {
 
   private String featureName;
   private String featureType;
   private Date startingDate;
   private String key;
+
+  public CarFeatures(String key, String featureName, String featureType, Date startingDate ) {
+    this.key = key;
+    this.featureName = featureName;
+    this.featureType = featureType;
+    this.startingDate = startingDate;
+  }
 
   public String getFeatureName() {
     return featureName;

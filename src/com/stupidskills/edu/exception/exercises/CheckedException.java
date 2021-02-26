@@ -1,6 +1,4 @@
-package com.stupidskills.edu.exception.exercise1;
-
-import com.stupidskills.edu.Student;
+package com.stupidskills.edu.exception.exercises;
 
 public class CheckedException {
 

@@ -1,4 +1,4 @@
-package com.stupidskills.edu.exception.exercise1;
+package com.stupidskills.edu.exception.exercises;
 
 //Custom Exception Class (Unchecked Exception Class)
 public class GenericException extends RuntimeException {
