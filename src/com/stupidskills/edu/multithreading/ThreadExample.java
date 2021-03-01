@@ -25,6 +25,8 @@ public class ThreadExample {
     thread2.setPriority(Thread.MIN_PRIORITY);
     thread2.start(); //thread2
 
+    //OS, if main thread terminates, then other threads will also die
+    // thread.join() -> wait, I am still running.
 
    /* thread0.join();
     thread1.join();

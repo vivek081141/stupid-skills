@@ -5,6 +5,19 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Problem - directory - contains - 10 files - 1000 file - 1 M
+ * List of files  - filesNames
+ * for each file
+ *
+ * 1. convert csv into POJO List<User> 5,000</User>
+ * 2. POJO - validation
+ * 3. store in db
+ *
+ */
+
+
+
 public class ExecutorExample {
 
   private static String filePath = "resource/files";
@@ -22,9 +35,11 @@ public class ExecutorExample {
 
   }
 
+  //
   public void executorService() {
-    //ExecutorService executorService = Executors.newFixedThreadPool(8);
-     ExecutorService executorService = Executors.newScheduledThreadPool(10);
+    Executors.newFixedThreadPool(10);
+    ExecutorService executorService = Executors.newCachedThreadPool();
+    Executors.newSingleThreadExecutor();
 
     File directory = new File(filePath);
 
@@ -42,24 +57,39 @@ public class ExecutorExample {
   }
 }
 
-class MyRunnableJob implements  Runnable {
-  private File file;
+class MyRunnableJob extends BatchJob implements  Runnable {
+
+  BatchJob batchJob;
 
   public MyRunnableJob(File file) {
-    this.file = file;
+   super(file);
   }
 
   @Override
   public void run() {
-    processJob();
+    batchJob.processJob();
   }
 
-  public void processJob() {
+
+
+
+}
+
+class BatchJob {
+
+  private File file;
+
+  public BatchJob(File file) {
+    this.file = file;
+  }
+
+  protected void processJob() {
+    //1. read the CSV File
     System.out.println(Thread.currentThread().getName() + " : Reading File: " + file.getName() );
     CSVFileReader csvFileReader = new CSVFileReader(file);
     List<User> users = csvFileReader.parseCSVFile();
 
-    // 2. Process it
+    // 2. Process it + Validations
     System.out.println(Thread.currentThread().getName() + " : Processing File: " + file.getName() + " : size:: "+ users.size() );
     FileProcessor processor = new FileProcessor(users);
     List<User> userList = processor.process();
@@ -69,8 +99,6 @@ class MyRunnableJob implements  Runnable {
     UserRepository repository = new UserRepository();
     repository.save(userList);
   }
-
-
 }
 
 

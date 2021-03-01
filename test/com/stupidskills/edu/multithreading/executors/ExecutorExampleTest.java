@@ -7,14 +7,11 @@ public class ExecutorExampleTest {
 
   private ExecutorExample example = new ExecutorExample();
 
-  //32816
+  //4145
   @Test
   public void testSequentialFlow () {
     Long time = System.currentTimeMillis();
-
-    for (int i = 0; i < 100; i++) {
-      example.sequentialFlow();
-    }
+    example.sequentialFlow();
     System.out.println("FINAL Time Taken to finish the job " + ((System.currentTimeMillis() - time)));
 
 

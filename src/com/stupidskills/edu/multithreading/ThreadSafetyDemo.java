@@ -12,7 +12,7 @@ public class ThreadSafetyDemo {
     thread1.join();
     thread2.join();
 
-    resource.print();
+    //resource.print();
   }
 }
 
@@ -20,6 +20,7 @@ public class ThreadSafetyDemo {
 class LocalRes implements Runnable {
 
   public void print() {
+    System.out.println();
   }
 
   @Override

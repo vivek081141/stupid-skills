@@ -23,17 +23,7 @@ public class AnonymousRBITest {
         System.out.println("Smms is sent to your number  " + balance);
       }
 
-      @Override
-      public void deposit(long deposit) {
-        System.out.println("Depositing my money::" + deposit);
-        balance = balance + deposit;
-      }
 
-      @Override
-      public void withdraw(long withdrawAmount) {
-        balance = balance - withdrawAmount;
-        System.out.println("balance amount :" + balance);
-      }
     };
 
     impl.deposit(1000);

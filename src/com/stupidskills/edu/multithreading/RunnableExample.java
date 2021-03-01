@@ -9,6 +9,7 @@ public class RunnableExample {
     Runnable tableWriter2 = new RunnableDemo(11);
     Runnable tableWriter3 = new RunnableDemo(12);
 
+    //ExecuterService - create the new thread and then we will pass the Runnable to it
     Thread thread1 = new Thread(tableWriter1);
     Thread thread2 = new Thread(tableWriter2);
     Thread thread3 = new Thread(tableWriter3);
