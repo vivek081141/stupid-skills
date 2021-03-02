@@ -1,31 +1,25 @@
 package com.stupidskills.edu.designpattern.builder;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-
 public class MenuBuilderDemo {
   public static void main(String[] args) {
-    List<String> list = new ArrayList<>();
 
-    Consumer<String> consumer = (x) -> System.out.println(x);
-    Consumer<String> consumer1 = (x) -> {
-      x = x + 10;
-      System.out.println(x);
-    };
 
-    consumer.accept("Hello");
+    BankAccount account = new BankAccount(
+            "1234567", "Vivek", "8951152580", "");
 
-    list.forEach(consumer);
 
-    Predicate<String> predicate = (x) -> {
-      if (x!=null && x.equals("HEY")) {
-        return true;
-      }
-      return false;
-    };
+    processAccount(account);
 
-    list.stream().filter(predicate);
+    account.getBankAccountNumber();
+
+   BankAccount.BankBuilder staticClassInstance = new BankAccount.BankBuilder();
+
+
+
+
+  }
+
+  private static void processAccount(BankAccount account) {
+
   }
 }

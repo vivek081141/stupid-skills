@@ -29,7 +29,7 @@ public class ExecutorExample {
     for (File file : directory.listFiles()) {
 
       MyRunnableJob runnableJob = new MyRunnableJob(file);
-      runnableJob.processJob();
+      runnableJob.run();
     }
     System.out.println("Time Taken to finish the job " + ((System.currentTimeMillis() - time)));
 
@@ -37,53 +37,45 @@ public class ExecutorExample {
 
   //
   public void executorService() {
-    Executors.newFixedThreadPool(10);
     ExecutorService executorService = Executors.newCachedThreadPool();
-    Executors.newSingleThreadExecutor();
 
     File directory = new File(filePath);
 
-    Long time = System.currentTimeMillis();
+    Long time = System.currentTimeMillis();  //6:14:15 in timestamp = 6141500000
+
+    //10
     for (File file : directory.listFiles()) {
 
+      //main
+      //thread1 - file0
+      //thread2 - file1
+      //thread8 - file7
       executorService.execute(new MyRunnableJob(file));
 
     }
-    executorService.shutdown();
+
+    //main thread
+    executorService.shutdown(); //tasks when they will get completed.
+
     while (!executorService.isTerminated()) {
+      //loop until all the threads have been executed.
     }
+
     System.out.println("Time Taken to finish the job " + ((System.currentTimeMillis() - time)));
 
   }
 }
 
-class MyRunnableJob extends BatchJob implements  Runnable {
-
-  BatchJob batchJob;
+class MyRunnableJob  implements  Runnable {
+  private File file;
 
   public MyRunnableJob(File file) {
-   super(file);
+    this.file = file;
   }
 
   @Override
   public void run() {
-    batchJob.processJob();
-  }
 
-
-
-
-}
-
-class BatchJob {
-
-  private File file;
-
-  public BatchJob(File file) {
-    this.file = file;
-  }
-
-  protected void processJob() {
     //1. read the CSV File
     System.out.println(Thread.currentThread().getName() + " : Reading File: " + file.getName() );
     CSVFileReader csvFileReader = new CSVFileReader(file);
@@ -99,6 +91,23 @@ class BatchJob {
     UserRepository repository = new UserRepository();
     repository.save(userList);
   }
+
+
+
+
 }
+
+/*class BatchJob {
+
+  private File file;
+
+  public BatchJob(File file) {
+    this.file = file;
+  }
+
+  protected void processJob() {
+
+  }
+}*/
 
 

@@ -1,84 +1,70 @@
 package com.stupidskills.edu.designpattern.builder;
 
+/**
+ * Builder Design Pattern
+ * Immutability
+ *
+ */
 public class BankAccount {
 
-  //
-  public static int public_outer_static_x = 10;
-  private static int private_outer_static_x = 20;
+  public void createObject() {
+    BankAccount account = new BankAccount();
+  }
 
-  public int public_outer_x = 30;
-  private int private_outer_x = 40;
-
-  // private member
-
-  private String accountHolder;
-  private int age;
-  private String emailAddress;
+  //20-30 fields
+  private String bankAccountNumber;
+  private String primaryAccountHolder;
   private String mobile;
-  private String accountId;
-  private String addressProof;
+  private String email;
 
-  private BankAccount() {
+
+  public String getBankAccountNumber() {
+    return bankAccountNumber;
   }
 
-  public String getAccountHolder() {
-    return accountHolder;
+
+  public String getPrimaryAccountHolder() {
+    return primaryAccountHolder;
   }
 
-  public int getAge() {
-    return age;
-  }
-
-  public String getEmailAddress() {
-    return emailAddress;
-  }
 
   public String getMobile() {
     return mobile;
   }
 
-  public String getAccountId() {
-    return accountId;
+
+  public String getEmail() {
+    return email;
   }
 
-  public String getAddressProof() {
-    return addressProof;
+  private BankAccount() {
+  }
+
+ /* public BankAccount(String bankAccountNumber) {
+    this.bankAccountNumber = bankAccountNumber;
+  }
+
+  public BankAccount(String bankAccountNumber, String primaryAccountHolder, String mobile, String email) {
+    this.bankAccountNumber = bankAccountNumber;
+    this.primaryAccountHolder = primaryAccountHolder;
+    this.mobile = mobile;
+    this.email = email;
+  }*/
+
+  /**
+   * static inner class
+   */
+  public static class BankBuilder {
+
+    public void print() {
+
+      BankAccount account = new BankAccount();
+
+
+    }
+
   }
 
 
-  public static void test() {
-
-  }
-
-
-
-
-  public static class Builder {
-
-    private int innerField;
-    public static int innerstaticField;
-
-    public int getStaticPrivateVariable() {
-      //public_outer_x
-      return private_outer_static_x;
-    }
-
-    public int getStaticVariable() {
-      BankAccount bankAccount = new BankAccount();
-      return public_outer_static_x;
-    }
-
-    public int getInstanceVariable() {
-      return public_outer_static_x;
-    }
-
-    public int getInnerField() {
-      return innerField;
-    }
-
-    public void setInnerField(int innerField) {
-      this.innerField = innerField;
-    }
-  }
 
 }
