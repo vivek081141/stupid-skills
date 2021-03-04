@@ -11,7 +11,6 @@ public class CallableDemo {
     CallableRunner runner = new CallableRunner();
 
     ExecutorService executorService = Executors.newSingleThreadExecutor();
-    executorService.execute(new RunnableEx());
     Future<String> future = executorService.submit(new CallableRunner());
 
     executorService.shutdown();

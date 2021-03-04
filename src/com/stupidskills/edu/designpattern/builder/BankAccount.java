@@ -7,15 +7,16 @@ package com.stupidskills.edu.designpattern.builder;
  */
 public class BankAccount {
 
-  public void createObject() {
-    BankAccount account = new BankAccount();
-  }
 
   //20-30 fields
   private String bankAccountNumber;
   private String primaryAccountHolder;
   private String mobile;
   private String email;
+
+  private Boolean isJointAccount;
+  private String secondaryAccountHolder;
+
 
 
   public String getBankAccountNumber() {
@@ -40,28 +41,51 @@ public class BankAccount {
   private BankAccount() {
   }
 
- /* public BankAccount(String bankAccountNumber) {
-    this.bankAccountNumber = bankAccountNumber;
-  }
 
-  public BankAccount(String bankAccountNumber, String primaryAccountHolder, String mobile, String email) {
-    this.bankAccountNumber = bankAccountNumber;
-    this.primaryAccountHolder = primaryAccountHolder;
-    this.mobile = mobile;
-    this.email = email;
-  }*/
 
   /**
    * static inner class
    */
   public static class BankBuilder {
 
-    public void print() {
+    private String bankAccountNumber;
+    private String primaryAccountHolder;
+    private String mobile;
+    private String email;
 
-      BankAccount account = new BankAccount();
+    private Boolean isJointAccount;
+    private String secondaryAccountHolder;
 
-
+    public BankBuilder addBankAccountNumber(String bankAccountNumber){
+      this.bankAccountNumber = bankAccountNumber;
+      return this;
     }
+
+    public BankBuilder addPrimaryAccountName(String primaryAccountName) {
+      this.primaryAccountHolder = primaryAccountName;
+      return this;
+    }
+
+    public BankBuilder addEmailAddress(String emailAddress) {
+      this.email = emailAddress;
+      return this;
+    }
+
+    public BankBuilder addMobile(String mobile) {
+      this.mobile = mobile;
+      return this;
+    }
+
+
+    public BankAccount builder() {
+      BankAccount account = new BankAccount();
+      account.bankAccountNumber = this.bankAccountNumber;
+      account.primaryAccountHolder = this.primaryAccountHolder;
+      account.email = this.email;
+      return account;
+    }
+
+
 
   }
 
