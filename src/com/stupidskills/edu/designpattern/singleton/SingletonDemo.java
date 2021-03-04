@@ -11,6 +11,5 @@ public class SingletonDemo {
   private static void trymethod1() {
     SingletonExample.getInstance().getValue("");
     System.out.println(SingletonExample.getInstance().getValue("key"));
-    SingletonExample.getInstance().clo
   }
 }

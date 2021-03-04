@@ -6,7 +6,6 @@ import java.util.List;
 /**
  * Blueprint
  */
-@Deprecated
 public class Student implements AutoCloseable {
   // member variable
 
