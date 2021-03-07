@@ -6,8 +6,8 @@
 
 package com.stupidskills.edu.java8.features.interfaces.predicates;
 
+import com.stupidskills.edu.java8.features.streams.Product;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Predicate;
 
 /**
@@ -16,43 +16,52 @@ import java.util.function.Predicate;
  */
 public class PredicateExample {
 
-  public void test01(){
-    IPredicate predicate = new IPredicate() {
-      @Override
-      public boolean test(Object t) {
-        return "Hello".equals(t);
-      }
-    };
-
-    predicate.test("Hello");
+  public static void main(String[] args) {
+    PredicateExample example = new PredicateExample();
+    example.test01();
   }
 
-  public boolean test(int var) {
-    Predicate<Integer> predicate1 = x -> x > 10;
+
+  public void test01(){
+    IPredicate<Product> predicate = (Product product) -> product.getWeight() > 40;
+    Product product = new Product("TV", 30f);
+    predicate.test(product);
+  }
+
+
+
+  public boolean test(int var1, int var2) {
+    Predicate<Integer> predicate1 = (Integer x) -> {return x > 10 ;};
     Predicate<Integer> predicate2 = x -> x < 20;
 
-    Predicate<Integer> predicate3 = x -> predicate1.test(x) && predicate2.test(x);
-    return predicate1.and(predicate2).test(var);
+
+    boolean result = predicate1.test(var1) && predicate2.test(var2);
+
+
+    Predicate<Integer> predicate = predicate1.and(predicate2);
+    predicate.test(var1);
+
+
+    return predicate1.and(predicate2).test(var1);
   }
 
   public List<String> removeElement(List<String> list, String element) {
 
-    list.removeIf(new Predicate<String>() {
-      @Override
-      public boolean test(String s) {
-        return false;
-      }
-    });
+    Predicate<String> predicate = x -> x.equals(element);
+
+    boolean isRemoved = list.removeIf(predicate);
+
 
     return list;
   }
 }
 
 @FunctionalInterface
-interface IPredicate {
-  boolean test(Object t);
+interface IPredicate<Product> {
+
+ public abstract boolean test(Product t);
 
   default IPredicate and(Predicate  other) {
-    return (t) -> test(t) && other.test(t);
+    return (t) -> test((Product) t) && other.test(t);
   }
 }

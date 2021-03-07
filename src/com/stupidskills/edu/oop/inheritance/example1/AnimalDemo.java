@@ -3,25 +3,9 @@ package com.stupidskills.edu.oop.inheritance.example1;
 public class AnimalDemo {
 
   public static void main(String[] args) {
-    Dog dog = new Dog();
+    Animal animal = new Animal("Kitty");
+    Dog dog = new Dog("Mr Rotwilier", "Rocky");
     dog.eat();
-
-    Animal animal = new Animal();
-
-    Animal dogReference = new Dog();
-
-    Cow cow = new Cow();
-
-    //1st implementation will get called
-    performOperation(animal);
-
-    //2nd implementation
-    performOperation(dog);
-
-    //2nd implementation
-    performOperation(cow);
-
-    performOperation(dogReference);
 
   }
 

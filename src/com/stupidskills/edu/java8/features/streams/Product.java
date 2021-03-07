@@ -1,4 +1,4 @@
-package com.stupidskills.edu.java8.features.products;
+package com.stupidskills.edu.java8.features.streams;
 
 public class Product {
   private String name;

@@ -15,8 +15,4 @@ class SupplierExampleTest {
     example.test2();
   }
 
-  @Test
-  void test3() {
-    example.test3();
-  }
 }

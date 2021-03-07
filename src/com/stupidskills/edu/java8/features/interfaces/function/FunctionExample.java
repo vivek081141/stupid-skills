@@ -1,8 +1,9 @@
 package com.stupidskills.edu.java8.features.interfaces.function;
 
-import com.stupidskills.edu.java8.features.products.Product;
+import com.stupidskills.edu.java8.features.streams.Product;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 interface IFunction {
 
@@ -12,15 +13,29 @@ interface IFunction {
 public class FunctionExample {
 
 
-  public void test() {
-    Product product = new Product("AC", 35f);
-    IFunction function = (Product p) -> p.getName();
+  /**
+   *  Product to String
+   *  Person -> Names (Mapping)
+   * @param product
+   */
+  public void test(Product product) {
+    IFunction function = new IFunction() {
+      @Override
+      public String apply(Product product) {
+        return product.getName();
+      }
+    };
 
-    System.out.println(function.apply(product));
+    IFunction function1 = (Product p) -> p.getName();
+
+    System.out.println(function1.apply(product));
   }
 
   public void test2() {
+    Function<Product, String> functionMapper =  (Product p) -> p.getName();
+
     List<Product> products = new ArrayList<>();
+
     products.stream().map((Product p) -> p.getName());
   }
 
