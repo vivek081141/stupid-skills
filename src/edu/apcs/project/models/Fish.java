@@ -8,6 +8,7 @@ public class Fish {
   protected int friendly;
   protected String type;
 
+  protected String name;
   protected double size;
   protected double price;
   protected String color;
@@ -19,7 +20,8 @@ public class Fish {
   public Fish() {
   }
 
-  public Fish(double size, String color, double price, String description, int noOfItems) {
+  public Fish(String name, double size, String color, double price, String description, int noOfItems) {
+    this.name = name;
     this.size = size;
     this.color = color;
     this.price = price;
@@ -80,8 +82,12 @@ public class Fish {
     this.noOfItems = noOfItems;
   }
 
+  public String getName() {
+    return name;
+  }
+
   @Override
   public String toString() {
-    return "Fish{" + "maintenance=" + maintenance + ", friendly=" + friendly + ", size=" + size + ", price=" + price + ", color='" + color + '\'' + ", description='" + description + '\'' + '}';
+    return "Fish{" + "name=" + name + ", friendly=" + friendly + ", type='" + type + '\'' + ", maintenance='" + maintenance + '\'' + ", size=" + size + ", price=" + price + ", color='" + color + '\'' + ", description='" + description + '\'' + ", noOfItems=" + noOfItems + '}';
   }
 }

@@ -17,10 +17,8 @@ package edu.apcs.project.models;
  */
 public class AngelFish extends Fish {
 
-  public AngelFish(Float size, String color, Float price, String description, int noOfItems) {
-
-
-
+  public AngelFish(String name, Float size, String color, Float price, String description, int noOfItems) {
+    super(name, size, color, price, description, noOfItems);
     this.type = "ANGEL_FISH";
     this.maintenance = 2;
     this.friendly = 3;
