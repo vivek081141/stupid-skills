@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 public class OptionalExampleTest {
 
   OptionalExample example = new OptionalExample();
+
   @Test
   public void test1() {
     example.test();

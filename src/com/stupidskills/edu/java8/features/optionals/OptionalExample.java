@@ -5,8 +5,15 @@ import java.util.stream.Stream;
 
 public class OptionalExample {
 
+  /**
+   *
+   *  public Optional<List<Address>> getAddress (String userId)
+   */
+
   public void test() {
     Optional<String> optional = Optional.of("One");
+    //optional of String ->
+    // best case scenario: it will contain a string
 
     //to check if values are present
     optional.isPresent();

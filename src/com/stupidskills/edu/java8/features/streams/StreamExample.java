@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -15,11 +16,16 @@ public class StreamExample {
 
   public void filter() {
     List<Product> products = createList();
-    Predicate<Product> predicate1 = x-> x.getWeight() > 30;
-    Predicate<Product> predicate2 = x-> x.getWeight() > 30;
+    Predicate<Product> predicate1 = x-> x.getWeight() < 30;
+    Predicate<Product> predicate2 = x-> x.getWeight() > 20;
     Predicate<Product> predicate = predicate1.and(predicate2);
 
-    products.stream().filter(predicate).map( x -> x.getName()).forEach(x-> System.out.println(x));
+    List<String> list = products.stream()
+            .filter(predicate)
+            .map( x -> x.getName()) // list<Product> -> List<String>
+            .collect(Collectors.toList());
+
+    list.stream().forEach(x-> System.out.println(x));
   }
 
   /**
@@ -31,10 +37,14 @@ public class StreamExample {
 
   }
 
+  /**
+   * List<List<String> to List<String>
+   */
   public void flatMap () {
     List<String> sectionA = List.of("A", "B", "C");
     List<String>  sectionB = List.of("X", "Y", "Z");
     List<String> sectionC = List.of("M", "N", "O");
+
 
 
     List<List<String>> sectionList = List.of(sectionA, sectionB, sectionC);
@@ -43,8 +53,7 @@ public class StreamExample {
     Function<List<String>, Stream<String>> flatFunction = x -> x.stream();
 
 
-    sectionA.stream().map(x->x+"").forEach(x -> System.out.println(x));
-
+    List<String> list = sectionList.stream().flatMap( x -> x.stream()).collect(Collectors.toList());
 
 
     sectionList.stream()
@@ -53,12 +62,15 @@ public class StreamExample {
 
   }
 
+  /**
+   * Reduce - great for addition, product
+   */
   public void reduce() {
-    // 2 + 2/2 +
-    Stream<Integer> stream = Stream.of(2, 2, 4, 6, 8);
-    BinaryOperator<Integer> biFunction =  (Integer a, Integer b) -> (a*b);
-    System.out.println(stream.reduce(0, biFunction ));
+    Stream<Integer> stream = Stream.of(2, 1, 5);
+    BinaryOperator<Integer> biFunction =  (Integer a, Integer b) -> (a + b);
+    Integer integer = stream.reduce(10, biFunction );
   }
+
 
   public void sortAndRemove(List<Product> products) {
     List<Product> productList = new ArrayList<>();
@@ -92,13 +104,16 @@ public class StreamExample {
     //if all the products matches this Predicate
     products.stream().allMatch((p) -> p.getWeight() > 30);
 
-    products.stream().skip(1).limit(20);
 
   }
 
+  /**
+   * Create a List of products
+   * @return
+   */
   public List<Product> createList () {
     List<Product> products = new ArrayList<>();
-    products.add(new Product("A", 50f));
+    products.add(new Product("Qualified", 21f));
     products.add(new Product("B", 60f));
     products.add(new Product("C", 70f));
     products.add(new Product("D", 80f));
