@@ -2,6 +2,9 @@ package edu.apcs.project;
 
 import edu.apcs.project.models.Fish;
 
+/**
+ * This will contain Fish and no of fishes a user is going to purchase
+ */
 public class Item {
   //11 + 25
   private Fish fish;

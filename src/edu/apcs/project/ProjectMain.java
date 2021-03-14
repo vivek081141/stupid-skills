@@ -11,7 +11,7 @@ public class ProjectMain {
 
   private Fish[][] catalog;
   private ShoppingCart cart;
-  private JFrame frame;
+  private JFrame menuFrame;
 
   public ProjectMain() {
     catalog = Catalog.generateCatalog();
@@ -19,10 +19,10 @@ public class ProjectMain {
   }
 
   public void start() {
-    frame = renderCatalogPage();
-    frame.setLayout(new BorderLayout());
-    frame.pack();
-    frame.setVisible(true);
+    menuFrame = renderCatalogPage();
+    menuFrame.setLayout(new BorderLayout());
+    menuFrame.pack();
+    menuFrame.setVisible(true);
   }
 
   private JFrame renderCatalogPage() {
@@ -64,6 +64,7 @@ public class ProjectMain {
     childPanel.add(b1);
     childPanel.add(b2);
 
+    //when we click on the proceed button, this action will be triggered
     b1.addActionListener(new ProceedAction());
     b2.addActionListener(new ExitAction());
 
@@ -97,22 +98,25 @@ public class ProjectMain {
       JPanel myPanel = new JPanel();
       myPanel.add(new JLabel("Fish Name:"));
       myPanel.add(fishJField);
-      //myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+      myPanel.add(Box.createHorizontalStrut(15)); // a spacer
       myPanel.add(new JLabel("Fish Count:"));
       myPanel.add(countJField);
 
+      userInput = JOptionPane.showInputDialog(null, "Please enter Name of fish and number of fish eg: Faintail, 6");
 
-      int option = JOptionPane.showConfirmDialog(myPanel, null, "Please Enter X and Y Values", JOptionPane.OK_OPTION);
+     // int option = JOptionPane.showConfirmDialog(myPanel, null, "Please Enter X and Y Values", JOptionPane.OK_OPTION);
 
       String name = fishJField.getName();
       String count = countJField.getName();
 
-      name = "FanTail";
-      count = "8";
+      name = userInput.split(",")[0];
+      count = userInput.split(",")[1];
+
+      //we will check here that fish is present and no of fishes should be lesser than items present in catalog
       Fish fish = Catalog.getFish(catalog, name);
 
       if (Catalog.isCorrectName(fish) && Catalog.isNoOfItemAvailable(fish, Integer.parseInt(count))) {
-        JOptionPane.showMessageDialog(null, "Fish name is matched, adding {} no if fishes in the cart.");
+        JOptionPane.showMessageDialog(null, "Fish name is matched, adding" + count +  " no if fishes in the cart.");
 
         Item item = new Item(fish, Integer.parseInt(count));
         cart.addItem(item);
@@ -120,7 +124,7 @@ public class ProjectMain {
         userInput = JOptionPane.showInputDialog(null, "Press Y to add more fishes, any other key to proceed to checkout.");
 
       } else {
-        JOptionPane.showMessageDialog(null, "Fish not found. please enter name and count again.");
+        JOptionPane.showMessageDialog(null, "Fish not found or the count is incorrect. Please enter name and count again.");
         userInput = "Y";
       }
     } while ("Y".equals(userInput));
@@ -129,15 +133,24 @@ public class ProjectMain {
     checkout();
   }
 
+  //user should have some items selected
   private void checkout() {
+
+    //we need to show the summary
+    //TODO
     JOptionPane.showMessageDialog(null, "This is the final bill after discount. " + cart.getFinalPrice());
+
+
+
     String userInput = JOptionPane.showInputDialog(null, "Press Y to payment, any other key to cancel");
     if ("Y".equals(userInput)) {
+      //this is the place where user is making the payment
       cart.processPayment();
     }
 
     JOptionPane.showMessageDialog(null, "Thanks for the purchase, we are again redirecting to the main menu.");
 
+    //todo : This is not working
     renderCatalogPage();
   }
 
@@ -145,7 +158,7 @@ public class ProjectMain {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      frame.setVisible(false);
+      menuFrame.setVisible(false);
       System.out.println("Proceed is clicked");
       proceedAction();
     }

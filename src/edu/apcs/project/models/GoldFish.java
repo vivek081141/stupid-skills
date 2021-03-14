@@ -7,7 +7,7 @@ public class GoldFish extends Fish {
     //70% of parent
     super(name, size, color, price, description, noOfItems);
     //30% of our own
-    this.type = "GOLD_FISH";
+    this.type = "Gold Fish";
     this.maintenance = 5;
     this.friendly = 5;
   }
