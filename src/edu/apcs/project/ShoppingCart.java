@@ -118,6 +118,10 @@ public class ShoppingCart {
     return discount;
   }
 
+  public double getDiscountPercentage() {
+    return discountPercentage;
+  }
+
   private void resetValues() {
     itemList = null;
     grossAmount = 0;

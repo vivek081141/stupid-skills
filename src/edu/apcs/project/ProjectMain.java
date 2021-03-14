@@ -21,9 +21,12 @@ public class ProjectMain {
 
   public void start() {
     menuFrame = renderCatalogPage();
-    menuFrame.setLayout(new BorderLayout());
     menuFrame.pack();
     menuFrame.setVisible(true);
+    menuFrame.setState(Frame.MAXIMIZED_BOTH);
+    menuFrame.setLayout(new BorderLayout(30,30));
+
+
   }
 
   private JFrame renderCatalogPage() {
@@ -36,20 +39,28 @@ public class ProjectMain {
     parentPanel.setBackground(Color.WHITE);
     for (int i = 0; i < catalog.length; i++) {
       for (int j = 0; j < catalog[i].length; j++) {
-        JLabel label = new JLabel();
         Fish fish = catalog[i][j];
         JTextArea textArea = new JTextArea();
         textArea.setLineWrap(true);
         textArea.setRows(4);
         textArea.setSize(200, 100);
-        String s = fish.getName() + "(" + fish.getType() + ")" + "Available Units: " + fish.getNoOfItems() + "<br>" + "Size: " + fish.getSize() + " (in)" + "<br>" + "Color: " + fish.getColor() + "<br>" + "Price: " + fish.getPrice() + "$" + "<br>" + "Description: Long description is being tested" + fish.getDescription() + "</html>";
-        String s1 = fish.getName() + "(" + fish.getType() + ")" + LINE_BREAK + "Available Units: " + fish.getNoOfItems() + LINE_BREAK + "Size: " + fish.getSize() + " (in)" + LINE_BREAK + "Color: " + fish.getColor() + LINE_BREAK + "Price: " + fish.getPrice() + LINE_BREAK + "$" + "Description: Long description is being tested" + fish.getDescription();
-        textArea.setText(s1);
-        label.setText(s);
-        label.setSize(200, 100);
-        label.setBorder(new LineBorder(Color.BLUE, 1, true));
-        label.setVerticalAlignment(SwingConstants.TOP);
-        label.setHorizontalTextPosition(SwingConstants.LEFT);
+
+        /**
+         eg:
+         Fantail(Gold Fish)
+         Available Units: 10
+         Size: 6.0 (in)
+         Color:  Mixed
+         Price: 6.0
+         Description: Long description is being testedposes an egg-shaped body and a high dorsal fi
+         */
+        String description = fish.getName() + "(" + fish.getType() + ")" + LINE_BREAK
+                + "Available Units: " + fish.getNoOfItems() + LINE_BREAK
+                + "Size: " + fish.getSize() + " (in)" + LINE_BREAK
+                + "Color: " + fish.getColor() + LINE_BREAK
+                + "Price: " + fish.getPrice() + "$" + LINE_BREAK
+                + "Description:" + fish.getDescription();
+        textArea.setText(description);
         parentPanel.add(textArea);
       }
     }
@@ -118,7 +129,7 @@ public class ProjectMain {
       if (Catalog.isCorrectName(fish) && Catalog.isNoOfItemAvailable(fish, Integer.parseInt(count))) {
 
         //Fish name (Fantail) is matched, no of items selected is 6.
-        JOptionPane.showMessageDialog(null, fish.getName() + "Fish name ("+ fish.getName() +") is matched, no of items selected is " + count + " .");
+        JOptionPane.showMessageDialog(null,  "Fish name ("+ fish.getName() +") is matched, no of items selected is " + count + " .");
 
         Item item = new Item(fish, Integer.parseInt(count));
         cart.addItem(item);
@@ -155,12 +166,13 @@ public class ProjectMain {
     for (Item item : cart.getItemList()) {
       //1. Fantail (Gold Fish) 6.0 * 6 = 36.0 $
       summaryDescription = summaryDescription + count + ". " + item.getFish().getName() + " (" + item.getFish().getType() + ") " + item.getFish().getPrice() + " * " + item.getNumber() + " = " + (item.getFish().getPrice() * item.getNumber()) + " $" + LINE_BREAK;
+      count++;
     }
 
     summaryDescription = summaryDescription + LINE_BREAK;
-    summaryDescription = summaryDescription + "Gross Amount:: " + cart.getGrossAmount() + " $" + LINE_BREAK;
-    summaryDescription = summaryDescription + "Discount:: " + cart.getDiscount() + " $" + LINE_BREAK;
-    summaryDescription = summaryDescription + "Final Amount:: " + cart.getFinalAmount() + " $" + LINE_BREAK;
+    summaryDescription = summaryDescription + "Gross Amount:: " + cart.getGrossAmount() + "$" + LINE_BREAK;
+    summaryDescription = summaryDescription + "Discount:: " +"("+ cart.getDiscountPercentage() +" %) "+cart.getDiscount() + "$" + LINE_BREAK;
+    summaryDescription = summaryDescription + "Final Amount:: " + cart.getFinalAmount() + "$" + LINE_BREAK;
 
     textArea.setText(summaryDescription);
 
@@ -177,12 +189,11 @@ public class ProjectMain {
     if ("Y".equals(userInput)) {
       //this is the place where user is making the payment
       cart.processPayment();
+      JOptionPane.showMessageDialog(null, "Thanks for the purchase, we are again redirecting to the main menu.");
     }
 
-    JOptionPane.showMessageDialog(null, "Thanks for the purchase, we are again redirecting to the main menu.");
-
     //todo : This is not working
-    renderCatalogPage();
+    start();
   }
 
   class ProceedAction implements ActionListener {
