@@ -9,6 +9,7 @@ import javax.swing.border.LineBorder;
 
 public class ProjectMain {
 
+  public static final String LINE_BREAK = "\n";
   private Fish[][] catalog;
   private ShoppingCart cart;
   private JFrame menuFrame;
@@ -28,7 +29,7 @@ public class ProjectMain {
   private JFrame renderCatalogPage() {
     JPanel panel = new JPanel();
 
-    GridLayout glayout = new GridLayout(4,4);
+    GridLayout glayout = new GridLayout(4, 4);
     glayout.setHgap(20);
     glayout.setVgap(10);
     JPanel parentPanel = new JPanel(glayout);
@@ -40,9 +41,9 @@ public class ProjectMain {
         JTextArea textArea = new JTextArea();
         textArea.setLineWrap(true);
         textArea.setRows(4);
-        textArea.setSize(200,100);
-        String s =   fish.getName() + "(" + fish.getType() +")" + "Available Units: " + fish.getNoOfItems() + "<br>" + "Size: " + fish.getSize() + " (in)" + "<br>" + "Color: " + fish.getColor() + "<br>" + "Price: " + fish.getPrice() + "$" + "<br>" + "Description: Long description is being tested" + fish.getDescription() + "</html>";
-        String s1 =   fish.getName() + "(" + fish.getType() +")" +"\n"+ "Available Units: " + fish.getNoOfItems()  +"\n"+ "Size: " + fish.getSize() + " (in)"  +"\n"+ "Color: " + fish.getColor() +"\n"+ "Price: " + fish.getPrice() +"\n"+ "$" + "Description: Long description is being tested" + fish.getDescription();
+        textArea.setSize(200, 100);
+        String s = fish.getName() + "(" + fish.getType() + ")" + "Available Units: " + fish.getNoOfItems() + "<br>" + "Size: " + fish.getSize() + " (in)" + "<br>" + "Color: " + fish.getColor() + "<br>" + "Price: " + fish.getPrice() + "$" + "<br>" + "Description: Long description is being tested" + fish.getDescription() + "</html>";
+        String s1 = fish.getName() + "(" + fish.getType() + ")" + LINE_BREAK + "Available Units: " + fish.getNoOfItems() + LINE_BREAK + "Size: " + fish.getSize() + " (in)" + LINE_BREAK + "Color: " + fish.getColor() + LINE_BREAK + "Price: " + fish.getPrice() + LINE_BREAK + "$" + "Description: Long description is being tested" + fish.getDescription();
         textArea.setText(s1);
         label.setText(s);
         label.setSize(200, 100);
@@ -81,9 +82,8 @@ public class ProjectMain {
   }
 
   /**
-   *  The dialog has Proceed and Cancel Event.
-   *  This is the proceed action where user will add items to the cart.
-   *
+   * The dialog has Proceed and Cancel Event.
+   * This is the proceed action where user will add items to the cart.
    */
   public void proceedAction() {
     String userInput = "";
@@ -102,9 +102,9 @@ public class ProjectMain {
       myPanel.add(new JLabel("Fish Count:"));
       myPanel.add(countJField);
 
-      userInput = JOptionPane.showInputDialog(null, "Please enter Name of fish and number of fish eg: Faintail, 6");
+      userInput = JOptionPane.showInputDialog(null, "Please enter Name of fish and number of fish eg: Fantail, 6");
 
-     // int option = JOptionPane.showConfirmDialog(myPanel, null, "Please Enter X and Y Values", JOptionPane.OK_OPTION);
+      // int option = JOptionPane.showConfirmDialog(myPanel, null, "Please Enter X and Y Values", JOptionPane.OK_OPTION);
 
       String name = fishJField.getName();
       String count = countJField.getName();
@@ -116,7 +116,9 @@ public class ProjectMain {
       Fish fish = Catalog.getFish(catalog, name);
 
       if (Catalog.isCorrectName(fish) && Catalog.isNoOfItemAvailable(fish, Integer.parseInt(count))) {
-        JOptionPane.showMessageDialog(null, "Fish name is matched, adding" + count +  " no if fishes in the cart.");
+
+        //Fish name (Fantail) is matched, no of items selected is 6.
+        JOptionPane.showMessageDialog(null, fish.getName() + "Fish name ("+ fish.getName() +") is matched, no of items selected is " + count + " .");
 
         Item item = new Item(fish, Integer.parseInt(count));
         cart.addItem(item);
@@ -137,9 +139,38 @@ public class ProjectMain {
   private void checkout() {
 
     //we need to show the summary
-    //TODO
-    JOptionPane.showMessageDialog(null, "This is the final bill after discount. " + cart.getFinalPrice());
+    cart.calculateSummary();
 
+
+    JScrollPane summaryPane = new JScrollPane();
+
+    JTextArea textArea = new JTextArea();
+    textArea.setLineWrap(true);
+    textArea.setRows(7);
+    textArea.setSize(400, 400);
+    textArea.setEditable(false);
+    textArea.setColumns(30);
+    String summaryDescription = "Fish::" + LINE_BREAK;
+    int count = 1;
+    for (Item item : cart.getItemList()) {
+      //1. Fantail (Gold Fish) 6.0 * 6 = 36.0 $
+      summaryDescription = summaryDescription + count + ". " + item.getFish().getName() + " (" + item.getFish().getType() + ") " + item.getFish().getPrice() + " * " + item.getNumber() + " = " + (item.getFish().getPrice() * item.getNumber()) + " $" + LINE_BREAK;
+    }
+
+    summaryDescription = summaryDescription + LINE_BREAK;
+    summaryDescription = summaryDescription + "Gross Amount:: " + cart.getGrossAmount() + " $" + LINE_BREAK;
+    summaryDescription = summaryDescription + "Discount:: " + cart.getDiscount() + " $" + LINE_BREAK;
+    summaryDescription = summaryDescription + "Final Amount:: " + cart.getFinalAmount() + " $" + LINE_BREAK;
+
+    textArea.setText(summaryDescription);
+
+
+    summaryPane.add(textArea);
+    summaryPane.setAutoscrolls(true);
+    summaryPane.setBorder(new LineBorder(Color.BLUE, 1, true));
+    summaryPane.setSize(400, 400);
+    summaryPane.setLayout(new ScrollPaneLayout());
+    JOptionPane.showMessageDialog(null, textArea);
 
 
     String userInput = JOptionPane.showInputDialog(null, "Press Y to payment, any other key to cancel");

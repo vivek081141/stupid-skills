@@ -30,6 +30,9 @@ public class ShoppingCart {
   //Discount Percentage
   private double discountPercentage;
 
+  //Discount after calculating the percentage
+  private double discount;
+
   /**
    * add the selected fish along with no. of fish in the cart
    */
@@ -44,7 +47,7 @@ public class ShoppingCart {
     this.discountPercentage = discountPercentage;
   }
 
-  public double getFinalPrice() {
+  public void calculateSummary() {
     grossAmount = 0;
     for (Item item : itemList) {
       grossAmount = grossAmount + (item.getFish().getPrice() * item.getNumber());
@@ -57,8 +60,8 @@ public class ShoppingCart {
     //applying discount
     //final amount = 100 - 20% of 100
 
-    finalAmount = grossAmount - (grossAmount * discountPercentage / 100);
-    return finalAmount;
+    this.discount = (grossAmount * discountPercentage / 100);
+    finalAmount = grossAmount - discount ;
   }
 
   /**
@@ -97,6 +100,22 @@ public class ShoppingCart {
       fish.setNoOfItems(fish.getNoOfItems() - numberTobeSubtracted);
     }
     resetValues();
+  }
+
+  public List<Item> getItemList() {
+    return itemList;
+  }
+
+  public double getGrossAmount() {
+    return grossAmount;
+  }
+
+  public double getFinalAmount() {
+    return finalAmount;
+  }
+
+  public double getDiscount() {
+    return discount;
   }
 
   private void resetValues() {
