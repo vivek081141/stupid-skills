@@ -24,11 +24,19 @@ public class ProjectMain {
     menuFrame.pack();
     menuFrame.setVisible(true);
     menuFrame.setState(Frame.MAXIMIZED_BOTH);
-    menuFrame.setLayout(new BorderLayout(30,30));
+    menuFrame.setLayout(new BorderLayout(30, 30));
 
 
   }
 
+  /**
+   * In order to render the screen, I am creating a JFrame and filling it with Panel.
+   * The Panel has a grid layout of rows and columns equal to the size of 2D array.
+   * Using a for loop, I am displaying the fish description and details for each fish.
+   * This is done in text area as I was not able to find anything else in internet.
+   *
+   * @return
+   */
   private JFrame renderCatalogPage() {
     JPanel panel = new JPanel();
 
@@ -54,12 +62,7 @@ public class ProjectMain {
          Price: 6.0
          Description: Long description is being testedposes an egg-shaped body and a high dorsal fi
          */
-        String description = fish.getName() + "(" + fish.getType() + ")" + LINE_BREAK
-                + "Available Units: " + fish.getNoOfItems() + LINE_BREAK
-                + "Size: " + fish.getSize() + " (in)" + LINE_BREAK
-                + "Color: " + fish.getColor() + LINE_BREAK
-                + "Price: " + fish.getPrice() + "$" + LINE_BREAK
-                + "Description:" + fish.getDescription();
+        String description = fish.getName() + "(" + fish.getType() + ")" + LINE_BREAK + "Available Units: " + fish.getNoOfItems() + LINE_BREAK + "Size: " + fish.getSize() + " (in)" + LINE_BREAK + "Color: " + fish.getColor() + LINE_BREAK + "Price: " + fish.getPrice() + "$" + LINE_BREAK + "Description:" + fish.getDescription();
         textArea.setText(description);
         parentPanel.add(textArea);
       }
@@ -68,7 +71,7 @@ public class ProjectMain {
     FlowLayout layout = new FlowLayout();
     JPanel childPanel = new JPanel();
 
-    // set the layout
+    // setting the buttons for Proceed and Exit.
     JButton b1 = new JButton("Proceed");
     JButton b2 = new JButton("Exit");
 
@@ -99,7 +102,7 @@ public class ProjectMain {
   public void proceedAction() {
     String userInput = "";
     do {
-      JTextField fishJField = new JTextField();
+      /*JTextField fishJField = new JTextField();
       JTextField countJField = new JTextField();
       fishJField.setSize(100, 50);
       countJField.setSize(100, 50);
@@ -111,17 +114,17 @@ public class ProjectMain {
       myPanel.add(fishJField);
       myPanel.add(Box.createHorizontalStrut(15)); // a spacer
       myPanel.add(new JLabel("Fish Count:"));
-      myPanel.add(countJField);
+      myPanel.add(countJField);*/
 
       userInput = JOptionPane.showInputDialog(null, "Please enter Name of fish and number of fish eg: Fantail, 6");
 
-      // int option = JOptionPane.showConfirmDialog(myPanel, null, "Please Enter X and Y Values", JOptionPane.OK_OPTION);
-
-      String name = fishJField.getName();
-      String count = countJField.getName();
-
-      name = userInput.split(",")[0];
-      count = userInput.split(",")[1];
+      String[] inputArray = userInput.split(",");
+      String name = "";
+      String count = "0";
+      if (inputArray != null && inputArray.length == 2) {
+        name = inputArray != null ? inputArray[0] : "";
+        count = inputArray != null ? inputArray[1] : "";
+      }
 
       //we will check here that fish is present and no of fishes should be lesser than items present in catalog
       Fish fish = Catalog.getFish(catalog, name);
@@ -129,7 +132,8 @@ public class ProjectMain {
       if (Catalog.isCorrectName(fish) && Catalog.isNoOfItemAvailable(fish, Integer.parseInt(count))) {
 
         //Fish name (Fantail) is matched, no of items selected is 6.
-        JOptionPane.showMessageDialog(null,  "Fish name ("+ fish.getName() +") is matched, no of items selected is " + count + " .");
+        String selectedFishMessage = "Fish name (" + fish.getName() + ") is matched, no of items selected is " + count + " .";
+        JOptionPane.showMessageDialog(null, selectedFishMessage, "Success", JOptionPane.INFORMATION_MESSAGE );
 
         Item item = new Item(fish, Integer.parseInt(count));
         cart.addItem(item);
@@ -137,19 +141,22 @@ public class ProjectMain {
         userInput = JOptionPane.showInputDialog(null, "Press Y to add more fishes, any other key to proceed to checkout.");
 
       } else {
-        JOptionPane.showMessageDialog(null, "Fish not found or the count is incorrect. Please enter name and count again.");
+        JOptionPane.showMessageDialog(null, "Fish not found or the count is incorrect. Please enter name and count again.",
+                "Failure", JOptionPane.INFORMATION_MESSAGE);
         userInput = "Y";
       }
     } while ("Y".equals(userInput));
 
-
+    /** This is make the payment after looking at the summary **/
     checkout();
   }
 
-  //user should have some items selected
+  /**
+   * This is make the payment after looking at the summary
+   **/
   private void checkout() {
 
-    //we need to show the summary
+    //we need to calculate the price before showing in JOption
     cart.calculateSummary();
 
 
@@ -161,7 +168,11 @@ public class ProjectMain {
     textArea.setSize(400, 400);
     textArea.setEditable(false);
     textArea.setColumns(30);
+
+    /** This will contain a multi line summary for the items user has selected.
+     * It will also show the discount and final amount.**/
     String summaryDescription = "Fish::" + LINE_BREAK;
+
     int count = 1;
     for (Item item : cart.getItemList()) {
       //1. Fantail (Gold Fish) 6.0 * 6 = 36.0 $
@@ -171,28 +182,28 @@ public class ProjectMain {
 
     summaryDescription = summaryDescription + LINE_BREAK;
     summaryDescription = summaryDescription + "Gross Amount:: " + cart.getGrossAmount() + "$" + LINE_BREAK;
-    summaryDescription = summaryDescription + "Discount:: " +"("+ cart.getDiscountPercentage() +" %) "+cart.getDiscount() + "$" + LINE_BREAK;
+    summaryDescription = summaryDescription + "Discount:: " + "(" + cart.getDiscountPercentage() + " %) " + cart.getDiscount() + "$" + LINE_BREAK;
     summaryDescription = summaryDescription + "Final Amount:: " + cart.getFinalAmount() + "$" + LINE_BREAK;
 
     textArea.setText(summaryDescription);
-
-
     summaryPane.add(textArea);
     summaryPane.setAutoscrolls(true);
     summaryPane.setBorder(new LineBorder(Color.BLUE, 1, true));
     summaryPane.setSize(400, 400);
     summaryPane.setLayout(new ScrollPaneLayout());
-    JOptionPane.showMessageDialog(null, textArea);
+    JOptionPane.showMessageDialog(null, textArea, "Summary", JOptionPane.INFORMATION_MESSAGE);
 
 
-    String userInput = JOptionPane.showInputDialog(null, "Press Y to payment, any other key to cancel");
+    String userInput = JOptionPane.showInputDialog(null, "Press Y to initiate payment, any other key to cancel");
     if ("Y".equals(userInput)) {
       //this is the place where user is making the payment
       cart.processPayment();
-      JOptionPane.showMessageDialog(null, "Thanks for the purchase, we are again redirecting to the main menu.");
+      JOptionPane.showMessageDialog(null, "Thanks for the purchase, we are redirecting to the main menu.", "Success", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+      JOptionPane.showMessageDialog(null, "Your order has been cancelled as per request, we are redirecting to the main menu.", "Cancelled", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    //todo : This is not working
+    //I am again redirecting to the main menu after payment or if user cancels payment.
     start();
   }
 
